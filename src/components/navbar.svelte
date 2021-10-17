@@ -23,82 +23,164 @@
   }
 </script>
 
-<section id="nav-bar">
+<header id="header-mobile" class="is-hidden-desktop">
+  <div class="fixed">
+    <a
+      href="/"
+      class=" is-hidden-desktop"
+      on:click={(e) => {
+        e.preventDefault();
+        activeMenu = !activeMenu;
+      }}
+    >
+      <div
+        class="menu-icon-wrapper"
+        style="visibility: visible;"
+        class:open={activeMenu}
+      >
+        <svg width="1000px" height="1000px">
+          <path
+            class="path1"
+            d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1
+    200 200 L 800 800"
+          />
+          <path class="path2" d="M 300 500 L 700 500" />
+          <path
+            class="path3"
+            d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1
+    200 800 L 800 200"
+          />
+        </svg>
+      </div>
+    </a>
+    <a href="/" class=" title is-bold"
+      >Daniel Dias<span
+        style="color: var(--magic-potion); font-size: 3rem; 
+    margin-bottom: 1rem;">.</span
+      ></a
+    >
+  </div>
+
+  <nav
+    class="navbar navbar-menu is-static"
+    class:is-active={activeMenu}
+    id="navbar-menu"
+  >
+    {#each menu as item}
+      <a
+        href={`/${item.link}`}
+        class:active={$selectedTab === item.link}
+        on:click={(e) => selectTab(item.link, e)}
+        class="navbar-item is-bold is-secondary"
+      >
+        <i class={`icon icon-${item.icon}`} />
+        {item.text}
+      </a>
+    {/each}
+  </nav>
+</header>
+
+<header id="header-desktop" class="is-hidden-mobile">
+  <div class="header-logo">
+    <a href="/" class="title is-bold"
+      >Daniel Dias<span style="color: var(--magic-potion); font-size: 3rem;"
+        >.</span
+      ></a
+    >
+    <a href="/" class="subtitle not-spaced is-muted"> Software Engineer</a>
+  </div>
+
   <div class="nav-container">
     <nav class="navbar">
-      <div class="navbar-brand">
-        <a href="/" class="navbar-logo is-bold"
-          ><img id="developer-head" src="images/developer-head.svg" alt="" />
-          <p>Daniel Dias</p></a
-        >
-        <a
-          href="/"
-          class="navbar-item is-hidden-desktop"
-          on:click={(e) => {
-            e.preventDefault();
-            activeMenu = !activeMenu;
-          }}
-        >
-          <div data-target="navbar-menu" class="navbar-item is-hidden-desktop">
-            Menu
-          </div>
-          <div
-            data-target="navbar-menu"
-            class="menu-icon-wrapper"
-            style="visibility: visible;"
-            class:open={activeMenu}
-          >
-            <svg width="1000px" height="1000px">
-              <path
-                class="path1"
-                d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1
-                200 200 L 800 800"
-              />
-              <path class="path2" d="M 300 500 L 700 500" />
-              <path
-                class="path3"
-                d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1
-                200 800 L 800 200"
-              />
-            </svg>
-          </div>
-        </a>
-      </div>
-      <div
-        id="navbar-menu"
-        class="navbar-menu is-static"
-        class:is-active={activeMenu}
-      >
+      <div id="navbar-menu" class="navbar-menu is-static">
         {#each menu as item}
           <a
             href={`/${item.link}`}
-            class:active={$selectedTab === item.link && item.link != "home"}
+            class:active={$selectedTab === item.link}
             on:click={(e) => selectTab(item.link, e)}
-            class="navbar-item is-secondary"
+            class="navbar-item is-bold is-secondary"
           >
+            <i class={`icon icon-${item.icon}`} />
             {item.text}
           </a>
         {/each}
       </div>
     </nav>
   </div>
-</section>
+
+  <div class="footer">
+    <div class="copyright">
+      &copy; {new Date().getFullYear()}, Daniel Dias
+    </div>
+  </div>
+</header>
 
 <style>
-  #nav-bar {
-    position: sticky;
+  .icon {
+    margin-right: 10px;
+    font-size: 16px;
+    color: var(--yellow);
+  }
+
+  .copyright {
+    color: #9c9ab3;
+    font-size: 14px;
+    padding-left: 30px;
+  }
+
+  .footer {
+    display: flex;
+    align-content: space-between;
+    flex-direction: column;
+    margin-top: auto;
+    margin-bottom: 15px;
+  }
+
+  #header-mobile .fixed {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  #header-mobile {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: 0.5rem;
+    padding: 0px 15px;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+  }
+
+  #header-mobile .title {
+    display: flex;
+    align-items: center;
+  }
+  #header-desktop,
+  #header-mobile {
+    background-color: var(--deep-blue);
+  }
+
+  #header-desktop {
+    position: fixed;
     top: 0;
-    z-index: 10;
-    width: 100%;
+    left: 0;
+    width: 18vw;
+    min-width: 260px;
+    height: 100vh;
+    min-height: 100vh;
+    background-color: var(--deep-blue);
+    border-right: solid 1px rgba(255, 255, 255, 0.1);
+    box-shadow: 15px rgb(0 0 0 / 5%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   .nav-container {
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid #dee2e6 !important;
-    background-color: white;
-    box-shadow: 0 0 15px rgb(0 0 0 / 5%);
+    padding: 0px 0 40px;
     flex-grow: 1;
-    margin: 0 auto;
     position: relative;
     width: auto;
   }
@@ -107,15 +189,15 @@
     width: 100%;
     min-height: 3.8rem;
     padding: 0 20px;
-    background-color: white;
   }
+
   @media screen and (min-width: 1024px) {
     .navbar,
     .navbar-menu {
-      align-items: stretch;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
+      flex-direction: column;
     }
   }
 
@@ -138,17 +220,18 @@
   }
 
   .navbar .navbar-item {
-    color: var(--madison);
+    font-family: "Rubik", sans-serif;
+    color: white;
     cursor: pointer;
+    font-size: 18px;
   }
 
   .navbar-item {
     display: block;
     flex-grow: 0;
     flex-shrink: 0;
-    color: #4a4a4a;
     line-height: 1.5;
-    padding: 0.5rem 0.75rem;
+    padding: 1.2rem 0.75rem;
     position: relative;
   }
 
@@ -156,15 +239,15 @@
     text-align: center !important;
   }
 
-  @media screen and (max-width: 1023px) {
-    .navbar-brand .navbar-item {
-      align-items: center;
-      display: flex;
+  @media screen and (min-width: 1024px) {
+    .is-hidden-desktop {
+      display: none !important;
+      visibility: hidden !important;
     }
   }
 
-  @media screen and (min-width: 1024px) {
-    .is-hidden-desktop {
+  @media screen and (max-width: 1024px) {
+    .is-hidden-mobile {
       display: none !important;
       visibility: hidden !important;
     }
@@ -185,14 +268,6 @@
     text-decoration: none;
   }
 
-  .navbar-brand {
-    align-items: center;
-    display: flex;
-    flex-shrink: 0;
-    justify-content: space-between;
-    padding-left: 12px;
-  }
-
   .menu-icon-wrapper svg {
     position: absolute;
     top: -18px;
@@ -202,7 +277,7 @@
   }
 
   .menu-icon-wrapper svg path {
-    stroke: var(--orange);
+    stroke: var(--magic-potion);
     stroke-width: 40px;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -237,40 +312,31 @@
     stroke-dasharray: 3496.56px, 6448.11px, 240px;
   }
 
-  .navbar-logo {
-    font-size: 18px;
-    color: var(--madison);
-    text-transform: uppercase;
+  .header-logo {
+    color: white;
+    padding-left: 30px;
+    align-items: baseline;
+    margin-bottom: 10vh;
     display: flex;
-    gap: 10px;
-    align-items: center;
-    font-family: "Gochi Hand", cursive;
+    flex-direction: column;
+    padding-top: 40px;
   }
 
-  .navbar-logo p:after,
-  .navbar .navbar-item.active:after {
+  .title {
+    color: white;
+  }
+
+  .navbar .navbar-item.active {
+    color: var(--yellow);
+  }
+
+  .navbar .navbar-item:not(.active):hover:after {
     content: "";
-    background: var(--orange);
-    width: 0;
+    background: var(--magic-potion);
+
     height: 2px;
     display: block;
-    transition: width 0.4s;
-  }
-
-  .navbar .navbar-item:hover {
-    color: var(--orange);
-  }
-
-  .navbar-logo:hover p:after,
-  .navbar .navbar-item.active:after {
-    display: block;
     width: 1.5em;
-  }
-
-  #developer-head {
-    width: 55px;
-    border-radius: 50%;
-    padding: 5px;
-    background-color: var(--orange);
+    transition: width 0.4s;
   }
 </style>

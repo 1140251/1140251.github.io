@@ -1,5 +1,7 @@
 [
-  { "link": "home", "text": "Home" },
-  { "link": "projects", "text": "Projects" },
-  { "link": "contact", "text": "Contact" }
+  { "link": "home", "text": "Home", "icon": "home" },
+  { "link": "about", "text": "About me", "icon": "user" },
+  { "link": "projects", "text": "Projects", "icon": "folder-alt" },
+  { "link": "blog", "text": "Blog", "icon": "note" },
+  { "link": "contact", "text": "Contact", "icon": "call-in" }
 ]

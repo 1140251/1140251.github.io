@@ -15,12 +15,10 @@
   onMount(() => {
     form = { name: "", email: "", subject: "", message: "" };
     loadRecapatcha();
-    if(window != undefined){
-    window.handleSubmit = handleSubmit;
+    if (window != undefined) {
+      window.handleSubmit = handleSubmit;
     }
   });
-
-
 
   async function handleSubmit(token) {
     await sendEmail(form, token)
@@ -63,17 +61,16 @@
     }
   };
 
-  function loadRecapatcha(){
+  function loadRecapatcha() {
     const script = document.createElement("script");
-    script.type = "text/javascript"
-    script.src = "https://www.google.com/recaptcha/api.js"
-document.getElementsByTagName("head")[0].appendChild(script)
-    
+    script.type = "text/javascript";
+    script.src = "https://www.google.com/recaptcha/api.js";
+    document.getElementsByTagName("head")[0].appendChild(script);
   }
 </script>
 
 <svelte:head>
-    <title>Daniel Dias | Contact</title>
+  <title>Daniel Dias | Contact</title>
 </svelte:head>
 
 <div class="contact-wrapper">
@@ -146,7 +143,12 @@ document.getElementsByTagName("head")[0].appendChild(script)
             {:else}
               <div class="with-errors">
                 An error occurred while sending the email, please try again or
-                contact me using your email service. Thank you!
+                contact me using your <a
+                  class="no-link"
+                  target="_blank"
+                  href="mailt&#111;&#58;&#37;64a&#110;%69%&#54;5&#108;%&#55;2&#109;di%61&#115;&#64;&#104;%6&#70;t&#37;6Da&#105;&#37;6C&#46;co&#109;"
+                  >email</a
+                > service. Thank you!
               </div>
             {/if}
           {/if}
@@ -172,10 +174,36 @@ document.getElementsByTagName("head")[0].appendChild(script)
         </form>
       </div>
     </div>
+    <div class="quote">
+      <blockquote>
+        <p class="subtitle">
+          "The best way to predict the future is to invent it."
+        </p>
+        <cite>Alan Kay</cite>
+      </blockquote>
+    </div>
   </div>
 </div>
 
 <style>
+  .quote {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 4rem;
+  }
+  blockquote {
+    color: #666;
+    margin: 0 auto;
+    font-size: 1rem;
+  }
+
+  blockquote p {
+    font-style: italic;
+    font-size: 1.3rem;
+    margin-bottom: 0;
+  }
+
   .img-fluid {
     max-width: 100%;
     height: 100%;
@@ -184,8 +212,9 @@ document.getElementsByTagName("head")[0].appendChild(script)
     display: flex;
     flex-grow: 1;
     flex-shrink: 0;
-    padding: 5rem 1.5rem;
+    padding: 3rem 1.5rem 1.5rem 1.5rem;
   }
+
   .image-wrapper {
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -215,11 +244,27 @@ document.getElementsByTagName("head")[0].appendChild(script)
     }
   }
 
+  @media screen and (max-width: 1024px) {
+    .contact-grid {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-wrapper {
+      padding-top: 1rem;
+    }
+
+    .img-fluid {
+      visibility: hidden;
+      display: none;
+    }
+  }
+
   .contact-grid h2 {
     line-height: 1.2;
     font-weight: 600;
     font-size: 40px;
     margin: 10px 0;
+    color: var(--american-blue);
   }
 
   .contact-wrapper .content p {
@@ -236,24 +281,20 @@ document.getElementsByTagName("head")[0].appendChild(script)
 
   .contact-wrapper .form-wrapper {
     box-shadow: 0 0 20px rgb(0 0 0 / 16%);
-    background-color: #fff;
+    background-color: white;
     padding: 2.5em;
+    border-radius: 15px !important;
   }
 
   @media (min-width: 1200px) {
     .contact-wrapper .form-wrapper {
       padding: 3.5em 2.5em;
     }
-
-    .contact-wrapper {
-      padding: 4rem 1.5rem 5rem 1.5rem;
-    }
   }
 
   .contact-form input,
   .contact-form textarea {
     height: 50px;
-    line-height: 50px;
     margin-bottom: 1.5rem !important;
     display: block;
     width: 100%;
@@ -261,8 +302,8 @@ document.getElementsByTagName("head")[0].appendChild(script)
     font-size: 1rem;
     line-height: 1.5;
     color: #495057;
-    background-color: #f0f0f0;
-    border: 1px solid #f0f0f0;
+    background-color: var(--light);
+    border: 1px solid var(--light);
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     font-family: "Neutra", sans-serif;
@@ -278,7 +319,7 @@ document.getElementsByTagName("head")[0].appendChild(script)
   .contact-form button {
     border: none;
     box-shadow: 0 0 20px rgb(0 0 0 / 16%);
-    background-color: #fff;
+    background-color: white;
     border-radius: 2px;
     display: flex;
     justify-content: flex-end;
@@ -299,13 +340,13 @@ document.getElementsByTagName("head")[0].appendChild(script)
   }
 
   .contact-form button:hover p {
-    color: var(--orange);
+    color: var(--magic-potion);
   }
 
   .contact-form button div {
     width: 3em;
     height: 3em;
-    background-color: var(--orange);
+    background-color: var(--magic-potion);
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -318,15 +359,6 @@ document.getElementsByTagName("head")[0].appendChild(script)
     width: 1.6em;
     height: 1.6em;
     color: white;
-  }
-
-  .row {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
   }
 
   .col-12 {
@@ -353,8 +385,13 @@ document.getElementsByTagName("head")[0].appendChild(script)
     min-height: 1px;
     padding-right: 15px;
     padding-left: 15px;
+    box-sizing: border-box;
   }
 
+  div[class^="col-"] > input,
+  div[class^="col-"] > textarea {
+    box-sizing: border-box;
+  }
   .with-errors {
     color: red;
   }
@@ -363,8 +400,7 @@ document.getElementsByTagName("head")[0].appendChild(script)
     margin-bottom: 40px;
   }
 
-  #sendmessage{
-
+  #sendmessage {
     color: green;
   }
 </style>

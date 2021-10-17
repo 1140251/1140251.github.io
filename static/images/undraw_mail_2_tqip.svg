@@ -24,17 +24,17 @@
 	-moz-animation: steaming 7s linear infinite;
 	animation: steaming 7s linear infinite;
 	}
-	.st0{fill:none;stroke:#69F0AE;stroke-width:9;stroke-miterlimit:10;stroke-dasharray:12.04,12.04;}
+	.st0{fill:none;stroke:#138698;stroke-width:9;stroke-miterlimit:10;stroke-dasharray:12.04,12.04;}
 	.st1{fill:url(#SVGID_1_);}
 	.st2{fill:#E55A39;}
 	.st3{opacity:0.2;enable-background:new    ;}
-	.st4{fill:#FF673E;}
+	.st4{fill:#ff4a57;}
 	.st5{fill:#6C63FF;}
 	.st6{opacity:0.1;enable-background:new    ;}
 	.st7{fill:#FDA57D;}
 	.st8{opacity:0.7;}
 	.st9{fill:url(#SVGID_2_);}
-	.st10{fill:#535461;}
+	.st10{fill:#353160;}
 	.st11{fill:#F5BB95;}
 	.st12{fill:#F5BC95;}
 	.st13{fill:#1D1E1E;}

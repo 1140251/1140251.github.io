@@ -7,6 +7,9 @@ import { terser } from "rollup-plugin-terser";
 import config from "sapper/config/rollup.js";
 import pkg from "./package.json";
 import json from "@rollup/plugin-json";
+import glob from "rollup-plugin-glob";
+
+import markdown from "./src/common/markdown.js";
 
 const mode = process.env.NODE_ENV;
 const dev = mode === "development";
@@ -28,6 +31,7 @@ export default {
         "process.env.NODE_ENV": JSON.stringify(mode),
       }),
       svelte({
+        extensions: [".svelte"],
         dev,
         hydratable: true,
         emitCss: true,
@@ -39,7 +43,8 @@ export default {
       }),
       commonjs(),
       json(),
-
+      markdown(),
+      glob(),
       legacy &&
         babel({
           extensions: [".js", ".mjs", ".html", ".svelte"],
@@ -83,10 +88,13 @@ export default {
         "process.env.NODE_ENV": JSON.stringify(mode),
       }),
       svelte({
+        extensions: [".svelte"],
         generate: "ssr",
         dev,
       }),
       resolve({ preferBuiltins: false, dedupe: ["svelte"] }),
+      markdown(),
+      glob(),
       commonjs(),
       json(),
     ],
@@ -109,6 +117,7 @@ export default {
         "process.env.NODE_ENV": JSON.stringify(mode),
       }),
       commonjs(),
+
       !dev && terser(),
     ],
 

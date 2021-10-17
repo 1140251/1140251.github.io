@@ -1,40 +1,97 @@
 <script>
-	export let status;
-	export let error;
+  import { goto } from "@sapper/app";
 
-	const dev = process.env.NODE_ENV === 'development';
+  import Button from "../components/button.svelte";
+  export let error;
+
+  const dev = process.env.NODE_ENV === "development";
 </script>
 
-<style>
-	h1, p {
-		margin: 0 auto;
-	}
-
-	h1 {
-		font-size: 2.8em;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-
-	p {
-		margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
-</style>
-
 <svelte:head>
-	<title>{status}</title>
+  <title>Daniel Dias | Page Not Found</title>
 </svelte:head>
 
-<h1>{status}</h1>
+<div class="error-wrapper">
+  <h1>4<span><i class="fas fa-ghost" /></span>4</h1>
+  <h2 class="is-bold">Page Not Found</h2>
 
-<p>{error.message}</p>
+  <p class="is-bold">It looks like nothing was found at this location.</p>
 
-{#if dev && error.stack}
-	<pre>{error.stack}</pre>
-{/if}
+  <Button text="Go to Home Page" on:click={(e) => goto("/")} />
+
+  {#if dev && error.stack}
+    <pre>{error.stack}</pre>
+  {/if}
+</div>
+
+<style>
+  .error-wrapper {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--deep-blue);
+  }
+
+  * {
+    color: white;
+  }
+
+  p,
+  h2 {
+    margin-top: 20px;
+  }
+
+  p {
+    color: #ccc;
+    margin-bottom: 35px;
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 12.5rem;
+    letter-spacing: 0.1em;
+    margin: 0.025em 0;
+    text-shadow: 0.05em 0.05em 0 rgba(0, 0, 0, 0.25);
+    white-space: nowrap;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  @keyframes spooky {
+    from {
+      transform: translatey(0.15em) scaley(0.95);
+    }
+
+    to {
+      transform: translatey(-0.15em);
+    }
+  }
+
+  h1 > span:hover * {
+    color: var(--yellow);
+  }
+  h1 > span {
+    animation: spooky 2s alternate infinite linear;
+    display: inline-block;
+    text-shadow: 0.05em 0.05em 0 rgba(0, 0, 0, 0.25);
+    filter: drop-shadow(0.05em 0.05em 0 rgba(0, 0, 0, 0.25));
+    margin-right: 0.1em;
+  }
+
+  h1 > span * {
+    color: var(--blue);
+  }
+
+  @media (max-width: 900px) {
+    h1 {
+      font-size: 8.5rem;
+    }
+  }
+  span {
+    margin-top: 0.5em;
+  }
+</style>

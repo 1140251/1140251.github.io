@@ -1,163 +1,146 @@
 <script>
-  import languages from "../data/languages.json";
-  import frameworks from "../data/frameworks.json";
+  import { fade } from "svelte/transition";
+
+  let elem;
+
+  let images = [
+    { src: "javascript.svg", speed: -5, left: 10, top: 10 },
+    { src: "html5.svg", speed: 5, left: 25, top: 30 },
+    { src: "triangle.svg", speed: 3, left: 25, top: 70 },
+    { src: "tablet.svg", speed: 7, left: 10, top: 85 },
+    { src: "mouse-svgrepo-com.svg", speed: 2, left: 65, top: 10 },
+    { src: "headphones.svg", speed: 2, left: 85, top: 87 },
+    { src: "mouse-svgrepo-com.svg", speed: 1, left: 40, top: 85 },
+    { src: "bug.svg", speed: -7, left: 90, top: 35 },
+    { src: "css3.svg", speed: -5, left: 70, top: 70 },
+    { src: "code.svg", speed: 5, left: 90, top: 10 },
+    { src: "code.svg", speed: 5, left: 10, top: 50 },
+    { src: "global-svgrepo-com.svg", speed: 5, left: 37, top: 15 },
+    { src: "circle.svg", speed: 5, left: 63, top: 45 },
+  ];
+
+  function parallax(e) {
+    for (let index = 0; index < images.length; index++) {
+      images[index].x = (e.pageX * images[index].speed) / 250;
+      images[index].y = (e.pageY * images[index].speed) / 250;
+    }
+  }
+
+  let text = "Software Engineer";
+  setInterval(() => {
+    text =
+      text == "Software Engineer"
+        ? "Full Stack Developer"
+        : "Software Engineer";
+  }, 5000);
 </script>
 
 <svelte:head>
   <title>Daniel Dias | Personal Website</title>
 </svelte:head>
 
-<div class="wrapper">
+<div class="wrapper is-centered" on:mousemove={parallax}>
   <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-5 is-offset-1">
-        <h1 class="title is-1 is-bold is-spaced">Daniel Dias</h1>
-        <h2 class="subtitle is-muted">Software Engineer</h2>
-        <div class="wrapper-info">
-          <a
-            href="https://www.linkedin.com/in/daniel-maia-dias/"
-            class="no-link"
-          >
-            <i class=" icon fab fa-linkedin" />
-            LinkedIn
-          </a>
-          <a href="https://github.com/1140251" class="no-link">
-            <i class="icon fab fa-github" />
-            GitHub
-          </a>
-          <a href="mailto:1140251@isep.ipp.pt" class="no-link">
-            <i class="fas fa-envelope" />
-            Email
-          </a>
-          <div class="content">
-            <p>
-              A conscientious, fast learner, and passionate to learn.
-I enjoy new challenges and exploring new technologies and I’m constantly looking to improve my skills. 
-            </p>
-            <div class="experience">
-              <p>
-                <strong>Key Languages</strong>
-                {#each languages as lang}
-                  <a class="no-link" target="_blank" href={lang.link}
-                    ><code>{lang.name}</code></a
-                  >
-                {/each}
-                <br />
-                <strong>Key Frameworks</strong>
-                {#each frameworks as frame}
-                  <a class="no-link" target="_blank" href={frame.link}
-                    ><code>{frame.name}</code></a
-                  >
-                {/each}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="column is-5 is-offset-1">
-        <figure class="image">
-          <img id="developer" src="images/developer.svg" alt="" />
-        </figure>
-      </div>
+    <img id="developer-head" src="images/developer-head.svg" alt="" />
+    <h1 class="title is-bold not-spaced">Daniel Dias</h1>
+    {#key text}
+      <h2 in:fade={{ duration: 2000 }} class="subtitle not-spaced">{text}</h2>
+    {/key}
+    <div class="links">
+      <a class="no-link" target="_blank" href="https://github.com/1140251">
+        <i class="fab fa-github" title="GitHub" />
+      </a>
+      <a
+        class="no-link"
+        target="_blank"
+        href="https://www.linkedin.com/in/daniel-maia-dias/"
+      >
+        <i class="fab fa-linkedin" title="LinkedIn" />
+      </a>
+      <a
+        class="no-link"
+        target="_blank"
+        href="mailt&#111;&#58;&#37;64a&#110;%69%&#54;5&#108;%&#55;2&#109;di%61&#115;&#64;&#104;%6&#70;t&#37;6Da&#105;&#37;6C&#46;co&#109;"
+      >
+        <i class="fas fa-envelope-square" title="Email" />
+      </a>
+      <a href="https://dev.to/1140251" target="_blank">
+        <i class="fab fa-dev" title="DEV Profile" />
+      </a>
     </div>
   </div>
+  {#each images as image}
+    <img
+      src={"images/background/" + image.src}
+      alt=""
+      class="background"
+      data-speed={image.speed}
+      style={`transform: translateX(${image.x ? image.x : 0}px) translateY(${
+        image.y ? image.y : 0
+      }px); left:${image.left}%; top:${image.top}%;`}
+    />
+  {/each}
 </div>
 
 <style>
-  .wrapper {
-    align-items: center;
+  .background {
+    z-index: -1;
+  }
+
+  @media screen and (max-width: 600px) {
+    .background {
+      display: none;
+    }
+  }
+
+  .links {
     display: flex;
-    flex-grow: 1;
-    flex-shrink: 0;
-    padding: 2rem 1.5rem 5rem 1.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.25em;
+    margin-top: 1rem;
+    line-height: 0.75em;
+  }
+
+  .links a {
+    color: white !important;
+  }
+
+  .links a:hover {
+    color: var(--yellow) !important;
+  }
+  #developer-head {
+    width: 100px;
+    border-radius: 50%;
+    padding: 5px;
+    background-color: var(--yellow);
+  }
+
+  .wrapper {
+    z-index: 2;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--deep-blue);
+    height: 100vh;
+  }
+
+  .wrapper > img {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    opacity: 1;
+    object-fit: cover;
+    stroke: #3c7bf4;
+    stroke-width: 8;
+    overflow: visible;
   }
 
   .title {
     margin: 0.5em;
-  }
-
-  .image {
-    display: block;
-    position: relative;
-  }
-  .image img {
-    display: block;
-    height: auto;
-    max-width: 300px;
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .wrapper-info a {
-    color: #4a4a4a !important;
-    display: inline-block;
-    padding: 0 0.5rem;
-    margin-top: 10px;
-  }
-  .wrapper-info a .icon {
-    margin-right: 0.2em;
-  }
-  .wrapper-info > a:hover:after {
-    display: block;
-    width: 1.5em;
-  }
-
-  .wrapper-info > a:after {
-    content: "";
-    background: var(--orange);
-    width: 0;
-    height: 2px;
-    display: block;
-    transition: width 0.4s;
-  }
-
-  p {
-    text-align: left;
-    margin-bottom: 1.5em;
-  }
-
-  code {
-    text-shadow: 0 1px white;
-    word-spacing: normal;
-    word-break: normal;
-    word-wrap: break-word;
-    line-height: 1.5;
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
-    tab-size: 4;
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
-    hyphens: none;
-    font-family: monospace, monospace;
-    font-size: 1em;
-    padding: 0.1em 0.2em;
-    border-radius: 0.3em;
-    white-space: normal;
-    border: 1px solid #eeeeee;
-    background: rgba(250, 250, 250, 0.8);
-    border-top: 1px solid #eeeeee;
-    border-bottom: 1px solid #eeeeee;
-  }
-
-  .wrapper-info .content {
-    margin-top: 1.5em;
-    font-size: 17px;
-  }
-  .experience {
-    margin-top: 1.5em;
-    display: contents;
-    text-align: center;
-  }
-  .experience a {
-    padding: 0;
-  }
-
-  .experience a code:hover {
-    border-color: var(--orange);
-  }
-
-  a:hover {
-    color: #3c4858 !important;
   }
 </style>

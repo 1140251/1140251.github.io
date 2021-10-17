@@ -48,5 +48,14 @@
     "tags": ["Node", "Express"],
     "description": "A simple Weather App based on a specific location.",
     "homePage": "https://github.com/1140251/WeatherApp-node-express"
+  },
+  {
+    "title": "PetCatcher App",
+    "start": "15 Mar 2020",
+    "end": "Present",
+    "categories": ["all", "hobby"],
+    "thumb": "/images/petcatcher.svg",
+    "tags": ["Node", "Express"],
+    "description": "A Pet finding system to combat animal abandonment and appeal to a sense of community to address this social failure."
   }
 ]

@@ -5,30 +5,32 @@ html {
 
 body {
   margin: 0;
+  background-color: #f9f9ff;
+  font-family: "Neutra", sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-}
 a.no-link {
   cursor: pointer;
   text-decoration: none;
   color: #4a4a4a;
 }
 
-body {
-  background-color: #fff;
-  font-family: "Neutra", sans-serif;
-}
-
 :root {
   --gradient: #fff;
-  --light: #fff;
+  --light: #f0f0f0;
   --grey: #cecece;
+  --cool-grey: #8b88b1;
   --purple: #09035f;
+  --dark-blue: #5e5c7f;
+  --deep-blue: #353160;
+  --american-blue: #454360;
+  --blue: #528cce;
   --madison: #314152;
   --orange: #ff673e;
+  --yellow: #ffd15c;
   --black: #000;
+  --jacarta: #353353;
+  --magic-potion: #ff4c60;
 }
 
 .container {
@@ -36,41 +38,102 @@ body {
   margin: 0 auto;
   position: relative;
   width: auto;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 @media (min-width: 576px) {
   .container {
-    max-width: 540px;
+    max-width: 500px;
   }
 }
 
 @media (min-width: 768px) {
   .container {
-    max-width: 720px;
+    max-width: 650px;
   }
 }
 
 @media (min-width: 900px) {
   .container {
-    max-width: 870px;
+    max-width: 800px;
   }
 }
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1130px;
+    max-width: 900px;
   }
 }
 
 @media (min-width: 1300px) {
   .container {
-    max-width: 1250px;
+    max-width: 1120px;
   }
 }
 
+.section-title {
+  color: var(--american-blue);
+  font-weight: 700;
+  font-size: 36px;
+  margin: 0;
+  margin-left: 14px;
+  margin-bottom: 45px;
+  margin-top: 40px;
+  position: relative;
+}
+
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.widget {
+  margin: 0 10px 30px 10px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 0 20px rgb(0 0 0 / 20%);
+  box-sizing: border-box;
+  border-radius: 15px !important;
+}
+
+.widget h3 {
+  color: var(--american-blue);
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+.widget ul {
+  padding-left: 1.1rem;
+  line-height: 1.7rem;
+}
+
+.widget ul li,
+.widget ul li a:hover {
+  color: var(--jacarta);
+}
+.widget ul li a {
+  color: var(--magic-potion);
+  cursor: pointer;
+  text-decoration: none;
+  outline: 0;
+}
+
+.section-title:before {
+  content: "";
+  background-image: url(/images/dots-bg.svg);
+  display: block;
+  height: 37px;
+  left: -14px;
+  top: -14px;
+  position: absolute;
+  width: 37px;
+}
+
 .title {
-  color: #353535;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 600;
   line-height: 1.125;
   text-align: center;
@@ -81,17 +144,21 @@ body {
 }
 
 .subtitle.is-muted {
-  color: #999;
+  color: #ccc;
 }
 
 .subtitle.is-5 {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .subtitle {
-  color: #4a4a4a;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.25;
+}
+
+.not-spaced {
+  padding: 0;
+  margin: 0;
 }
 
 .is-bold {
@@ -115,7 +182,26 @@ body {
     flex: none;
     width: 41.66666667%;
   }
+  .column.is-3 {
+    flex: none;
+    width: 30%;
+  }
 }
+
+@media (min-width: 768px) {
+  .col-md-3 {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .col-md-9 {
+    -ms-flex: 0 0 75%;
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+}
+
 .is-centered {
   text-align: center;
 }
@@ -134,15 +220,26 @@ body {
 
 .link a {
   cursor: pointer;
-  font-weight: 500;
-  color: var(--orange);
+  font-weight: 600;
+  color: var(--magic-potion);
   margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   align-items: center;
   display: inline-flex;
-  border-bottom: solid 3px var(--orange);
+
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.link a .icon {
+  margin-left: 5px;
+}
+
+.link a:hover .icon {
+  margin-left: 5px;
 }
 
 .card {
@@ -151,10 +248,14 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding: 20px 20px 0;
   position: relative;
-  background-color: #fff;
+  background-color: white;
   box-shadow: 0 0 20px rgb(0 0 0 / 16%);
   transition: all 0.2s ease-in-out;
-  border: solid 3px var(--orange);
+  border-radius: 20px !important;
+}
+
+* {
+  margin: 0;
+  padding: 0;
 }
