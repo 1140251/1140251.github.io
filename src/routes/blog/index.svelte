@@ -34,7 +34,7 @@
   import PostInfo from "./_post-info.svelte";
   import Search from "./_search.svelte";
 
-  import Tags from "./_tags.svelte";
+  // import Tags from "./_tags.svelte";
 
   export let posts, tags, search, tag;
 </script>
@@ -64,7 +64,7 @@
       </div>
       <div class="sidebar">
         <Search />
-        <Tags {tags} />
+        <!-- <Tags {tags} /> -->
       </div>
     </div>
   </div>
