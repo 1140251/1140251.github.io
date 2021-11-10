@@ -1,6 +1,7 @@
 const path = require("path");
 const prism = require("prismjs");
 const marked = require("marked");
+const emoji = require("node-emoji");
 const matter = require("gray-matter");
 const formatDate = require("date-fns/format");
 const readingTime = require("reading-time");
@@ -55,6 +56,8 @@ export default () => ({
       content = splittedContent[1];
     }
 
+    const replacer = (match) => emoji.emojify(match);
+    content = content.replace(/(:.*:)/g, replacer);
     const html = marked(content);
     const readingStats = readingTime(content, { wordsPerMinute: 150 });
     const printReadingTime = readingStats.text;

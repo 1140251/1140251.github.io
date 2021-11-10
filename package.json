@@ -19,6 +19,7 @@
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.19",
     "marked": "^3.0.7",
+    "node-emoji": "^1.11.0",
     "polka": "next",
     "prismjs": "^1.25.0",
     "reading-time": "^1.3.0",

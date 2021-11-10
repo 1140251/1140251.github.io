@@ -18,7 +18,6 @@
   export let post;
   export let recent;
   export let tags;
-  import { goto } from "@sapper/app";
   import PostInfo from "../_post-info.svelte";
   import Search from "../_search.svelte";
   import Tags from "../_tags.svelte";
@@ -52,7 +51,9 @@
             </ul>
           {/if}
         </header>
-        <article />
+        <article>
+          {@html post.html}
+        </article>
       </div>
       <div class="sidebar">
         <Search />
@@ -136,5 +137,30 @@
     margin-top: 1.5rem;
     font-size: 16px;
     line-height: 1.7;
+  }
+
+  article :global(p),
+  article :global(h2) {
+    margin-bottom: 1rem;
+  }
+
+  article :global(h3) {
+    margin-bottom: 0.5rem;
+  }
+
+  article :global(a) {
+    color: var(--magic-potion);
+    cursor: pointer;
+    text-decoration: none;
+    outline: 0;
+  }
+
+  article :global(a:hover) {
+    color: var(--jacarta);
+  }
+
+  article :global(ul) {
+    padding-left: 1.1rem;
+    line-height: 1.7rem;
   }
 </style>

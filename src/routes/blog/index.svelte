@@ -18,7 +18,6 @@
               post.tags.includes(query.tag)
             );
           }
-          console.log(query);
         }
         return {
           posts: data.posts,

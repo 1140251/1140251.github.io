@@ -16,10 +16,15 @@
   });
 
   const { page } = stores();
-  if ($page.path !== "/" && tabs.includes($page.path.substr(1))) {
-    selectedTab.set($page.path.substr(1));
-  } else {
-    selectedTab.set("home");
+
+  if (typeof window !== "undefined" && typeof document !== "undefined") {
+    page.subscribe(async ({ path, params, query }) => {
+      if (path !== "/" && tabs.includes(path.substr(1))) {
+        selectedTab.set($page.path.substr(1));
+      } else {
+        selectedTab.set("home");
+      }
+    });
   }
 </script>
 

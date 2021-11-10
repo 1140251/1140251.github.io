@@ -21,9 +21,6 @@
         // Lower inc to slow and higher to slow
         const inc = Math.ceil(target / speed);
 
-        // console.log(inc);
-        // console.log(count);
-
         // Check if target is reached
         if (count <= target) {
           // Add inc to count and output in counter
@@ -74,10 +71,11 @@
                 <p style="text-align: justify;">
                   Hi, I'm Daniel Dias, a Software Developer from Porto,
                   Portugal, with a diploma of merit in Software Engineering
-                  Master's degree. I have a huge passion for software
-                  development, either in Web, Mobile or Desktop development. My
-                  favourite programming languages, despite my knowledge, are
-                  Golang, Javascript, Python and C#.
+                  Master's degree. <br /> I have a huge passion for software development,
+                  either in Web, Mobile or Desktop development. In my free time,
+                  I try to explore new things in Software and work on side projects.
+                  Some technologies I enjoy working with are Javascript/Typescript,
+                  Golang and Python.
                 </p>
                 <div class="info-footer">
                   <Button
@@ -195,7 +193,7 @@
         >.
       </p>
 
-      <a class="no-link" href="/Resume_new.pdf" download>Download CV</a>
+      <a class="no-link" href="/resume.pdf" download>Download CV</a>
     </div>
   </Modal>
 {/if}

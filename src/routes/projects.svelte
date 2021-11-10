@@ -46,9 +46,7 @@
                     /></a
                   >
                 {:else}
-                  <a class="no-link" href="javascript:void(0)"
-                    >In development!</a
-                  >
+                  <p class="no-link">In development!</p>
                 {/if}
               </div>
             </div>
@@ -71,6 +69,16 @@
   .subtitle {
     font-size: 14px;
     margin: 0 !important;
+  }
+
+  p.no-link {
+    color: var(--dark-blue);
+    font-size: 16px;
+    font-weight: 700;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
   }
 
   .projects-wrapper .card {
