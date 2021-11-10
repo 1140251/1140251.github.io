@@ -18,9 +18,9 @@
   export let post;
   export let recent;
   export let tags;
-  import PostInfo from "../_post-info.svelte";
-  import Search from "../_search.svelte";
-  import Tags from "../_tags.svelte";
+  import PostInfo from "../../../components/post-info.svelte";
+  import Search from "../../../components/search.svelte";
+  import Tags from "../../../components/tags.svelte";
 </script>
 
 <svelte:head>
