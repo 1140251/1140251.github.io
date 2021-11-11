@@ -1,4 +1,4 @@
-import posts from "../_posts.js";
+import posts from "./_posts.js";
 
 const lookup = new Map();
 
@@ -10,7 +10,7 @@ posts.forEach((post) => {
   }
 });
 
-export function get(req, res, next) {
+export async function get(req, res) {
   // the `slug` parameter is available because
   // this file is called [slug].json.js
   const { slug } = req.params;

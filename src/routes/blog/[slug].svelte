@@ -15,63 +15,76 @@
 </script>
 
 <script>
+  import { onMount } from "svelte";
+  import { goto } from "@sapper/app";
+
   export let post;
   export let recent;
   export let tags;
-  import PostInfo from "../../../components/post-info.svelte";
-  import Search from "../../../components/search.svelte";
-  import Tags from "../../../components/tags.svelte";
+  import PostInfo from "../../components/post-info.svelte";
+  import Search from "../../components/search.svelte";
+  import Tags from "../../components/tags.svelte";
+
+  onMount(() => {
+    if (!post) {
+      goto("/404");
+    }
+  });
 </script>
 
 <svelte:head>
-  <title>{post.title}</title>
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content={post.title} />
-  <meta property="og:description" content={post.description} />
-  <meta name="description" content={post.description} />
-  <meta name="keywords" content={post.tags} />
+  {#if post}
+    <title>{post.title}</title>
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={post.title} />
+    <meta property="og:description" content={post.description} />
+    <meta name="description" content={post.description} />
+    <meta name="keywords" content={post.tags} />
+  {/if}
 </svelte:head>
 
-<div class="container">
-  <div class="content">
-    <div class="row">
-      <div class="article-content">
-        <header>
-          <h1 class="post-title">{post.title}</h1>
-          <PostInfo
-            author={post.author}
-            date={post.date}
-            readingTime={post.printReadingTime}
-          />
-          {#if post.tags}
-            <ul class="tags">
-              {#each post.tags as tag}
-                <a href={`/blog?tag=${tag}`}>{tag}</a>
+{#if post}
+  <div class="container">
+    <div class="content">
+      <div class="row">
+        <div class="article-content">
+          <header>
+            <h1 class="post-title">{post.title}</h1>
+            <PostInfo
+              author={post.author}
+              date={post.date}
+              readingTime={post.printReadingTime}
+            />
+            {#if post.tags}
+              <ul class="tags">
+                {#each post.tags as tag}
+                  <a href={`/blog?tag=${tag}`}>{tag}</a>
+                {/each}
+              </ul>
+            {/if}
+          </header>
+          <article>
+            {@html post.html}
+          </article>
+        </div>
+        <div class="sidebar">
+          <Search />
+          <div class="widget">
+            <h3>Recent Posts</h3>
+            <ul>
+              {#each recent as r}
+                <li>
+                  <a href={`/blog/${r.slug}`}>{r.title}</a>
+                </li>
               {/each}
             </ul>
-          {/if}
-        </header>
-        <article>
-          {@html post.html}
-        </article>
-      </div>
-      <div class="sidebar">
-        <Search />
-        <div class="widget">
-          <h3>Recent Posts</h3>
-          <ul>
-            {#each recent as r}
-              <li>
-                <a href={`/blog/${r.slug}`}>{r.title}</a>
-              </li>
-            {/each}
-          </ul>
+          </div>
+          <Tags {tags} />
         </div>
-        <Tags {tags} />
       </div>
     </div>
   </div>
-</div>
+{/if}
 
 <style>
   .content {
