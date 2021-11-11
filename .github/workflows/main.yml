@@ -18,7 +18,6 @@ jobs:
           node-version: "12.x"
       - run: npm install
       - run: npm run export
-      - run: cp __sapper__/export/404/index.html __sapper__/export/404.html
       - name: Build and Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
