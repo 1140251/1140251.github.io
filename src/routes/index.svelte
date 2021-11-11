@@ -82,6 +82,8 @@
   {/each}
 </div>
 
+<a href="/404" style="visibility:hidden" />
+
 <style>
   .background {
     z-index: -1;
