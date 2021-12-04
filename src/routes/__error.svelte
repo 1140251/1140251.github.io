@@ -1,6 +1,19 @@
+<script context="module">
+	/** @type {import('@sveltejs/kit').ErrorLoad} */
+	export function load({ error, status }) {
+		return {
+			props: {
+				error
+			}
+		};
+	}
+</script>
+
 <script lang="ts">
-	import Button from '../components/button.svelte';
 	import { goto } from '$app/navigation';
+
+	import Button from '../components/button.svelte';
+	export let error;
 
 	const dev = process.env.NODE_ENV === 'development';
 </script>
@@ -16,6 +29,10 @@
 	<p class="is-bold">It looks like nothing was found at this location.</p>
 
 	<Button text="Go to Home Page" on:click={(e) => goto('/')} />
+
+	{#if dev && error && error.stack}
+		<pre>{error.stack}</pre>
+	{/if}
 </div>
 
 <style>

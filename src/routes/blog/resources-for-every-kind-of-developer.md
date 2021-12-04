@@ -6,9 +6,12 @@ description:
 tags: technology, development, productivity
 ---
 
+In development!
+
+<!--
 I know, I know. If you are a developer, you probably have seen this kind of post multiple times. I also have seen them, but most of them are focused on free and specific development resources.
 
-I’m a firm believer that as a software developer, that wants to be more than a simple programmer, should be aware of how things work in all the development phases.  
+I’m a firm believer that as a software developer, that wants to be more than a simple programmer, should be aware of how things work in all the development phases.
 This process is known as the software development life cycle (SDLC). But if you want to know the SDLC, consider reading this article :point_right: [SDLC](https://www.ntaskmanager.com/blog/software-development-life-cycle-sdlc/) and check the :point_right: [Netflix Development Cycle](https://netflixtechblog.com/full-cycle-developers-at-netflix-a08c31f83249). With the fact that you know SDLC, you might begin to explore different ways of doing something and by that opening up your horizon to new methodologies and technologies.
 
 Getting straight to the point, there are some tools to learn and explore new methodologies and technologies. Some more abroad and others with very specific topics. Let’s get to it!
@@ -30,7 +33,7 @@ Reading a book is on of the best way to progress as a software developer. There 
 
 - [Packt](https://www.packtpub.com/ "Packt") - A publisher of books and videos related to software and tech by helping developers to build good software. They have a free [7 day trial](https://www.packtpub.com/checkout/subscription/packt-subscription-monthly-7dft421?freeTrial) with unlimited access to all online books and videos.
 
-<!-- ### Learning Platforms :bulb:
+ ### Learning Platforms :bulb:
 
 https://frontendmasters.com/
 https://www.frontendmentor.io/
@@ -77,7 +80,7 @@ https://techcrunch.com/
 https://news.ycombinator.com/
 https://lobste.rs/
 https://gizmodo.com/tech
-https://9to5mac.com/ -->
+https://9to5mac.com/
 
 Thank you for reading :v: :v: :v:, and I hope you found this article useful! :fire:
-If you have any questions or you just wanna chat, feel free to contact me or buy me a coffee [:coffee:](https://www.buymeacoffee.com/danieldias)!
+If you have any questions or you just wanna chat, feel free to contact me or buy me a coffee [:coffee:](https://www.buymeacoffee.com/danieldias)! -->

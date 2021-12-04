@@ -1,4 +1,4 @@
-function emailValidator(value) {
+function emailValidator(value: string) {
   return (
     value &&
     !!value.match(
@@ -7,7 +7,7 @@ function emailValidator(value) {
   );
 }
 
-function requiredValidator(value) {
+function requiredValidator(value: string) {
   return value !== undefined && value !== null && value !== "";
 }
 

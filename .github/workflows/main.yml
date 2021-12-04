@@ -15,13 +15,12 @@ jobs:
       - name: Use Node.js '12.x'
         uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
+          node-version: '12.x'
       - run: npm install
-      - run: npm run export
-      - run: cp __sapper__/export/404/index.html __sapper__/export/404.html
+      - run: npm run deploy
       - name: Build and Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           ACCESS_TOKEN: ${{ secrets.gh_pwebsite }}
           BRANCH: gh-pages
-          FOLDER: __sapper__/export
+          FOLDER: build
