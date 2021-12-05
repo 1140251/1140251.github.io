@@ -18,7 +18,6 @@ const config = {
 		}),
 
 		ssr: true,
-		hydrate: false,
 		// prerender: {
 		// 	crawl: true,
 		// 	enabled: true
