@@ -18,9 +18,9 @@ jobs:
           node-version: '16.x'
       - run: npm install
       - run: npm run build
-      - name: Build and Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.gh_pwebsite }}
-          BRANCH: gh-pages
-          FOLDER: build
+      - name: 'Deploy to Netlify'
+        steps:
+          - uses: jsmrcaga/action-netlify-deploy@v1.1.0
+            with:
+              NETLIFY_AUTH_TOKEN: ${{ secrets.MY_TOKEN_SECRET }}
+              NETLIFY_DEPLOY_TO_PROD: true

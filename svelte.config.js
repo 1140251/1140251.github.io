@@ -1,7 +1,7 @@
 import { mdsvex } from 'mdsvex';
 import { mdsvexConfig } from './mdsvex.config.js';
 import preprocess from 'svelte-preprocess';
-import staticAdapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-netlify';
 
 const config = {
 	extensions: ['.svelte', ...mdsvexConfig.extensions],
@@ -10,14 +10,19 @@ const config = {
 	preprocess: [mdsvex(mdsvexConfig), preprocess()],
 
 	kit: {
-		adapter: staticAdapter({
+		adapter: adapter({
 			// default options are shown
 			pages: 'build',
 			assets: 'build',
 			fallback: null
 		}),
 
-		ssr: false,
+		ssr: true,
+		hydrate: false,
+		// prerender: {
+		// 	crawl: true,
+		// 	enabled: true
+		// },
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte'
 	}
